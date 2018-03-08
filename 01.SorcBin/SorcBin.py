@@ -1,22 +1,30 @@
-tab=[1,2,3,4,5,6,7,8,9,10,24,25,40,36,230]
-lookingNumber=1
+import copy
+import math
+tab=[1,5,7,12,20,25,30]
+lookingNumber=8
+
 
 def SorcBin(inputTab,lookingNumber):
     left=0
     right=len(inputTab)
     index=-1
     while (left<right):
-        mid=round((left+right)/2)
-        
+        mid=copy.deepcopy(math.floor((left+right)/2))  #here was bug not round but math.floor
+        print("Left: ",left," right ", right, " mid idex (from 0):", mid)
         if(inputTab[mid]<lookingNumber):
-            left=mid+1
+            left=copy.deepcopy(mid+1)
         else:
-            right=mid
+            right=copy.deepcopy(mid)
+        
         if(inputTab[left]==lookingNumber):
-            index= left
+            index= copy.deepcopy(left)
+            print ("test")
+            break
         else:
             index= -2
+        
+        
     return index
 
-print("Index poszukiwanej liczby: ",lookingNumber," to :",SorcBin(tab,lookingNumber))
+print("Index (od 0) poszukiwanej liczby: ",lookingNumber," to :",SorcBin(tab,lookingNumber))
   
